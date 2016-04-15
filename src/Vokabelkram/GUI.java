@@ -18,6 +18,10 @@ public class GUI extends JFrame {
 	public void initUI() throws IOException {
 
 		JTextField wort = new JTextField("test");
+		JTextField deutsch = new JTextField("Deutsches Wort");
+		JTextField englisch = new JTextField("Englisches Wort");
+		JTextField kategorie = new JTextField("Kategorie");
+		JButton speichern = new JButton("Speichern");
 		JButton loeschen = new JButton("Löschen");
 
 		loeschen.addActionListener(new ActionListener() {
@@ -27,6 +31,13 @@ public class GUI extends JFrame {
 						JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, new String[] { "Ja", "Nein" },
 						"Nein");
 				System.out.println(Dateiverwaltung.loeschen(wort, a));
+			}
+		});
+
+		speichern.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent event) {
+				System.out.println(Dateiverwaltung.speichern(deutsch, englisch, kategorie));
 			}
 		});
 

@@ -14,18 +14,24 @@ public class Dateiverwaltung extends JFrame {
 	public static ArrayList<Speicher> speicher = new ArrayList<Speicher>();
 
 	public static String loeschen(JTextField wort, int b) {
-			for (Speicher temp : StartGui.speicher) {
-				if (temp.deutsch.equals(wort.getText()) || temp.english.equals(wort.getText())) {
-					if (b == 0) {
-						speicher.remove(temp);
-						return temp.deutsch + " = " + temp.english + " gelöscht!";
-					} else {
-
-					}
+		for (Speicher temp : StartGui.speicher) {
+			if (temp.deutsch.equals(wort.getText()) || temp.english.equals(wort.getText())) {
+				if (b == 0) {
+					speicher.remove(temp);
+					return temp.deutsch + " = " + temp.english + " gelöscht!";
 				} else {
-					return "Wort nicht gefunden!";
+
 				}
+			} else {
+				return "Wort nicht gefunden!";
 			}
+		}
 		return "test";
+	}
+
+	public static String speichern(JTextField wortA, JTextField wortB, JTextField wortC) {
+		Speicher s = new Speicher(wortA.getText(), wortB.getText(), wortC.getText());
+		speicher.add(s);
+		return "Gespeichert!";
 	}
 }
