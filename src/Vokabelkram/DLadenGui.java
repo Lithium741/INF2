@@ -129,6 +129,7 @@ public class DLadenGui extends JFrame {
 				System.out.println(e.getCause());
 			}
 		}
+		fc.getName(f)
 		s.close();
 		JOptionPane.showMessageDialog(null, "Geladen");
 	}
