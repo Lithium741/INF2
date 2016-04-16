@@ -64,7 +64,7 @@ public class Dateiverwaltung extends JFrame {
 		return fc.getSelectedFile().getName() + " geladen";
 	}
 
-	public String fileSpeichern(int a, JFileChooser fc) {
+	public static String fileSpeichern(int a, JFileChooser fc) {
 		try {
 			if (a == JFileChooser.APPROVE_OPTION) {
 				File file = fc.getSelectedFile();

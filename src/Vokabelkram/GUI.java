@@ -22,9 +22,10 @@ public class GUI extends JFrame {
 		JTextField englisch = new JTextField("Englisches Wort");
 		JTextField kategorie = new JTextField("Kategorie");
 		JButton speichern = new JButton("Speichern");
-		JButton laden = new JButton("Laden");
 		JButton loeschen = new JButton("Löschen");
-
+		JButton fileLaden = new JButton("Aus Datei laden");
+		JButton fileSpeichern = new JButton("In Datei speichern");
+		
 		loeschen.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
@@ -42,12 +43,21 @@ public class GUI extends JFrame {
 			}
 		});
 
-		laden.addActionListener(new ActionListener() {
+		fileLaden.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				JFileChooser fc = new JFileChooser();
 				int a = fc.showOpenDialog(null);
 				System.out.println(Dateiverwaltung.fileLaden(a, fc));
+			}
+		});
+		
+		fileSpeichern.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent event) {
+				JFileChooser fc = new JFileChooser();
+				int a = fc.showOpenDialog(null);
+				System.out.println(Dateiverwaltung.fileSpeichern(a, fc));
 			}
 		});
 
