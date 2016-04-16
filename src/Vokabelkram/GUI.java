@@ -10,6 +10,8 @@ import javax.swing.*;
 
 public class GUI extends JFrame {
 
+	private static int depth = 0;
+
 	private GUI() throws IOException {
 
 		initUI();
@@ -28,11 +30,13 @@ public class GUI extends JFrame {
 		JButton dateiverwaltung = new JButton("Dateiverwaltung");
 		JButton spiel = new JButton("Spiele");
 		JButton zurueck = new JButton("Zurück");
+		int depth = 0;
 
 		dateiverwaltung.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				createLayoutDateiverwaltung(speichern, loeschen, fileLaden, fileSpeichern, zurueck);
+				GUI.depth++;
+				createLayout(depth, speichern, loeschen, fileLaden, fileSpeichern, zurueck);
 				System.out.println("test");
 			}
 		});
@@ -86,50 +90,50 @@ public class GUI extends JFrame {
 			}
 		});
 
-		createLayout(dateiverwaltung, spiel);
+		createLayout(depth, dateiverwaltung, spiel);
 
 		setTitle("Wort Löschen");
-		setSize(700, 700);
+		setSize(350, 200);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 
-	private void createLayout(JComponent... arg) {
+	private void createLayout(Integer a, JComponent... arg) {
 
-		Container pane = getContentPane();
-		GroupLayout gl = new GroupLayout(pane);
-		pane.setLayout(gl);
+		if (a == 0) {
+			Container pane = getContentPane();
+			GroupLayout gl = new GroupLayout(pane);
+			pane.removeAll();
+			pane.setLayout(gl);
 
-		gl.setAutoCreateGaps(true);
+			gl.setAutoCreateGaps(true);
 
-		gl.setAutoCreateContainerGaps(true);
+			gl.setAutoCreateContainerGaps(true);
 
-		gl.setHorizontalGroup(gl.createParallelGroup()
-				.addGroup(gl.createSequentialGroup().addComponent(arg[0]).addComponent(arg[1])));
-		gl.setVerticalGroup(gl.createSequentialGroup()
-				.addGroup(gl.createParallelGroup().addComponent(arg[0]).addComponent(arg[0])));
+			gl.setHorizontalGroup(gl.createParallelGroup()
+					.addGroup(gl.createSequentialGroup().addComponent(arg[0]).addComponent(arg[1])));
+			gl.setVerticalGroup(gl.createSequentialGroup()
+					.addGroup(gl.createParallelGroup().addComponent(arg[0]).addComponent(arg[1])));
+		}
+		if (a == 1) {
+			Container pane = getContentPane();
+			GroupLayout gl1 = new GroupLayout(pane);
+			pane.removeAll();
+			pane.setLayout(gl1);
 
-	}
+			gl1.setAutoCreateGaps(true);
 
-	private void createLayoutDateiverwaltung(JComponent... arg) {
+			gl1.setAutoCreateContainerGaps(true);
 
-		Container pane = getContentPane();
-		GroupLayout gl = new GroupLayout(pane);
-		pane.setLayout(gl);
-
-		gl.setAutoCreateGaps(true);
-
-		gl.setAutoCreateContainerGaps(true);
-
-		gl.setHorizontalGroup(
-				gl.createParallelGroup().addGroup(gl.createSequentialGroup().addComponent(arg[0]).addComponent(arg[1]))
-						.addGroup(gl.createSequentialGroup().addComponent(arg[2]).addComponent(arg[3]))
-						.addGroup(gl.createSequentialGroup().addComponent(arg[4])));
-		gl.setVerticalGroup(
-				gl.createSequentialGroup().addGroup(gl.createParallelGroup().addComponent(arg[0]).addComponent(arg[0]))
-						.addGroup(gl.createParallelGroup().addComponent(arg[2]).addComponent(arg[3]))
-						.addGroup(gl.createParallelGroup().addComponent(arg[4])));
-
+			gl1.setHorizontalGroup(gl1.createParallelGroup()
+					.addGroup(gl1.createSequentialGroup().addComponent(arg[0]).addComponent(arg[1]))
+					.addGroup(gl1.createSequentialGroup().addComponent(arg[2]).addComponent(arg[3]))
+					.addGroup(gl1.createSequentialGroup().addComponent(arg[4])));
+			gl1.setVerticalGroup(gl1.createSequentialGroup()
+					.addGroup(gl1.createParallelGroup().addComponent(arg[0]).addComponent(arg[1]))
+					.addGroup(gl1.createParallelGroup().addComponent(arg[2]).addComponent(arg[3]))
+					.addGroup(gl1.createParallelGroup().addComponent(arg[4])));
+		}
 	}
 
 	public static void main(String[] args) {
