@@ -47,7 +47,7 @@ public class GUI extends JFrame {
 			public void actionPerformed(ActionEvent event) {
 				JFileChooser fc = new JFileChooser();
 				int a = fc.showOpenDialog(null);
-				System.out.println(Dateiverwaltung.laden(a));
+				System.out.println(Dateiverwaltung.fileLaden(a, fc));
 			}
 		});
 

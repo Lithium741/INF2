@@ -38,11 +38,11 @@ public class Dateiverwaltung extends JFrame {
 		return "Gespeichert!";
 	}
 
-	public static String laden(int a) {
+	public static String fileLaden(int a, JFileChooser fc) {
 		Scanner s = null;
-		if (a == JFileChooser.APPROVE_OPTION){
-			File file = GUI.
-			try{
+		if (a == JFileChooser.APPROVE_OPTION) {
+			File file = fc.getSelectedFile();
+			try {
 				s = new Scanner(file);
 				s.useDelimiter("\n");
 			} catch (FileNotFoundException e) {
@@ -61,6 +61,25 @@ public class Dateiverwaltung extends JFrame {
 			}
 		}
 		s.close();
-		return GUI.fc.getName(file) + " Geladen";
+		return fc.getSelectedFile().getName() + " geladen";
+	}
+
+	public String fileSpeichern(int a, JFileChooser fc) {
+		try {
+			if (a == JFileChooser.APPROVE_OPTION) {
+				File file = fc.getSelectedFile();
+				FileWriter writer = new FileWriter(file);
+				for (Speicher temp : speicher) {
+					writer.write(temp.getDeutsch() + "," + temp.getEnglish() + "," + temp.getKategorie());
+					writer.write("\r\n");
+				}
+				writer.close();
+			} else {
+				return "";
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "Gespeichert";
 	}
 }
