@@ -10,7 +10,7 @@ import javax.swing.*;
 
 public class GUI extends JFrame {
 
-	private static int depth = 0;
+	private static int depth = 1;
 
 	private GUI() throws IOException {
 
@@ -24,48 +24,79 @@ public class GUI extends JFrame {
 		JTextField englisch = new JTextField("Englisches Wort");
 		JTextField kategorie = new JTextField("Kategorie");
 		JButton speichern = new JButton("Speichern");
+		JButton speichernButton = new JButton("Speichern");
 		JButton loeschen = new JButton("Löschen");
+		JButton loeschenButton = new JButton("Löschen");
 		JButton fileLaden = new JButton("Aus Datei laden");
 		JButton fileSpeichern = new JButton("In Datei speichern");
 		JButton dateiverwaltung = new JButton("Dateiverwaltung");
 		JButton spiel = new JButton("Spiele");
 		JButton zurueck = new JButton("Zurück");
-		int depth = 0;
+		JButton AIDatei = new JButton("Aus/In Datei");
+		JButton datei = new JButton("Datei");
 
 		dateiverwaltung.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				GUI.depth++;
-				createLayout(depth, speichern, loeschen, fileLaden, fileSpeichern, zurueck);
-				System.out.println("test");
+				depth = 2;
+				createLayout(depth, speichern, loeschen, AIDatei, zurueck);
 			}
 		});
 
 		spiel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				System.out.println("test");
 			}
 		});
 
 		zurueck.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				System.out.println("test");
 			}
 		});
 
 		loeschen.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
+				depth = 3;
+				createLayout(depth, wort, loeschenButton, zurueck);
+			}
+		});
+
+		loeschenButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent event) {
 				int a = JOptionPane.showOptionDialog(null, wort.getText() + " wirklich löschen?", "Löschen bestätigen",
 						JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, new String[] { "Ja", "Nein" },
 						"Nein");
+				System.out.println(a);
 				System.out.println(Dateiverwaltung.loeschen(wort, a));
 			}
 		});
 
 		speichern.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent event) {
+				depth = 4;
+				createLayout(depth, deutsch, englisch, kategorie, speichernButton, zurueck);
+			}
+		});
+
+		speichernButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent event) {
+				System.out.println(Dateiverwaltung.speichern(deutsch, englisch, kategorie));
+			}
+		});
+
+		AIDatei.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent event) {
+				System.out.println(Dateiverwaltung.speichern(deutsch, englisch, kategorie));
+			}
+		});
+
+		speichernButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				System.out.println(Dateiverwaltung.speichern(deutsch, englisch, kategorie));
@@ -100,39 +131,69 @@ public class GUI extends JFrame {
 
 	private void createLayout(Integer a, JComponent... arg) {
 
-		if (a == 0) {
+		switch (a) {
+		case 1:
 			Container pane = getContentPane();
 			GroupLayout gl = new GroupLayout(pane);
 			pane.removeAll();
 			pane.setLayout(gl);
-
 			gl.setAutoCreateGaps(true);
-
 			gl.setAutoCreateContainerGaps(true);
-
 			gl.setHorizontalGroup(gl.createParallelGroup()
 					.addGroup(gl.createSequentialGroup().addComponent(arg[0]).addComponent(arg[1])));
 			gl.setVerticalGroup(gl.createSequentialGroup()
 					.addGroup(gl.createParallelGroup().addComponent(arg[0]).addComponent(arg[1])));
-		}
-		if (a == 1) {
-			Container pane = getContentPane();
-			GroupLayout gl1 = new GroupLayout(pane);
+			break;
+
+		case 2:
+			pane = getContentPane();
+			gl = new GroupLayout(pane);
 			pane.removeAll();
-			pane.setLayout(gl1);
+			setSize(150, 100);
+			pane.setLayout(gl);
+			gl.setAutoCreateGaps(true);
+			gl.setAutoCreateContainerGaps(true);
+			gl.setHorizontalGroup(gl.createParallelGroup()
+					.addGroup(gl.createSequentialGroup().addComponent(arg[0]).addComponent(arg[1]))
+					.addGroup(gl.createSequentialGroup().addComponent(arg[2]).addComponent(arg[3])));
+			gl.setVerticalGroup(gl.createSequentialGroup()
+					.addGroup(gl.createParallelGroup().addComponent(arg[0]).addComponent(arg[1]))
+					.addGroup(gl.createParallelGroup().addComponent(arg[2]).addComponent(arg[3])));
+			break;
 
-			gl1.setAutoCreateGaps(true);
+		case 3:
+			pane = getContentPane();
+			gl = new GroupLayout(pane);
+			pane.removeAll();
+			setSize(350, 120);
+			pane.setLayout(gl);
+			gl.setAutoCreateGaps(true);
+			gl.setAutoCreateContainerGaps(true);
+			gl.setHorizontalGroup(gl.createParallelGroup()
+					.addGroup(gl.createSequentialGroup().addComponent(arg[0]).addComponent(arg[1]))
+					.addGroup(gl.createSequentialGroup().addComponent(arg[2])));
+			gl.setVerticalGroup(gl.createSequentialGroup()
+					.addGroup(gl.createParallelGroup().addComponent(arg[0]).addComponent(arg[1]))
+					.addGroup(gl.createParallelGroup().addComponent(arg[2])));
+			break;
 
-			gl1.setAutoCreateContainerGaps(true);
-
-			gl1.setHorizontalGroup(gl1.createParallelGroup()
-					.addGroup(gl1.createSequentialGroup().addComponent(arg[0]).addComponent(arg[1]))
-					.addGroup(gl1.createSequentialGroup().addComponent(arg[2]).addComponent(arg[3]))
-					.addGroup(gl1.createSequentialGroup().addComponent(arg[4])));
-			gl1.setVerticalGroup(gl1.createSequentialGroup()
-					.addGroup(gl1.createParallelGroup().addComponent(arg[0]).addComponent(arg[1]))
-					.addGroup(gl1.createParallelGroup().addComponent(arg[2]).addComponent(arg[3]))
-					.addGroup(gl1.createParallelGroup().addComponent(arg[4])));
+		case 4:
+			pane = getContentPane();
+			gl = new GroupLayout(pane);
+			pane.removeAll();
+			setSize(350, 160);
+			pane.setLayout(gl);
+			gl.setAutoCreateGaps(true);
+			gl.setAutoCreateContainerGaps(true);
+			gl.setHorizontalGroup(gl.createParallelGroup()
+					.addGroup(gl.createSequentialGroup().addComponent(arg[0]).addComponent(arg[3]))
+					.addGroup(gl.createSequentialGroup().addComponent(arg[1]).addComponent(arg[4]))
+					.addGroup(gl.createSequentialGroup().addComponent(arg[2])));
+			gl.setVerticalGroup(gl.createSequentialGroup()
+					.addGroup(gl.createParallelGroup().addComponent(arg[0]).addComponent(arg[3]))
+					.addGroup(gl.createParallelGroup().addComponent(arg[1]).addComponent(arg[4]))
+					.addGroup(gl.createParallelGroup().addComponent(arg[2])));
+			break;
 		}
 	}
 
