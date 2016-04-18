@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.xml.bind.Marshaller.Listener;
 
 @SuppressWarnings("serial")
 public class Catch extends JPanel {
@@ -16,22 +17,24 @@ public class Catch extends JPanel {
 	int yIncrease = 1;
 	int y = 0;
 	int x = 5;
+	Racquet racquet = new Racquet(this);
 
 	public Catch() {
-		KeyListener listener = new KeyListener() {
+		addKeyListener(new KeyListener() {
 			@Override
 			public void keyTyped(KeyEvent e) {
 			}
 
 			@Override
-			public void keyPressed(KeyEvent e) {
+			public void keyReleased(KeyEvent e) {
+				racquet.keyReleased(e);
 			}
 
 			@Override
-			public void keyReleased(KeyEvent e) {
+			public void keyPressed(KeyEvent e) {
+				racquet.keyPressed(e);
 			}
-		};
-		addKeyListener(listener);
+		});
 		setFocusable(true);
 	}
 
@@ -53,8 +56,9 @@ public class Catch extends JPanel {
 	}
 
 	public static void main(String[] args) throws InterruptedException {
-		JFrame frame = new JFrame("Mini Tennis");
+		JFrame frame = new JFrame("Catch");
 		Catch game = new Catch();
+		
 		frame.add(game);
 		frame.setSize(300, 400);
 		frame.setLocationRelativeTo(null);
@@ -62,6 +66,9 @@ public class Catch extends JPanel {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		while (true) {
+			if 
+				
+			}
 			game.moveWord();
 			game.repaint();
 			Thread.sleep(10);
