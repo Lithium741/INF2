@@ -38,10 +38,9 @@ public class Dateiverwaltung extends JFrame {
 		return "Gespeichert!";
 	}
 
-	public static String fileLaden(int a, JFileChooser fc) {
+	public static String fileLaden(int a, File file) {
 		Scanner s = null;
 		if (a == JFileChooser.APPROVE_OPTION) {
-			File file = fc.getSelectedFile();
 			try {
 				s = new Scanner(file);
 				s.useDelimiter("\n");
@@ -61,13 +60,12 @@ public class Dateiverwaltung extends JFrame {
 			}
 		}
 		s.close();
-		return fc.getSelectedFile().getName() + " geladen";
+		return file.getName() + " geladen";
 	}
 
-	public static String fileSpeichern(int a, JFileChooser fc) {
+	public static String fileSpeichern(int a, File file) {
 		try {
 			if (a == JFileChooser.APPROVE_OPTION) {
-				File file = fc.getSelectedFile();
 				FileWriter writer = new FileWriter(file);
 				for (Speicher temp : speicher) {
 					writer.write(temp.getDeutsch() + "," + temp.getEnglish() + "," + temp.getKategorie());

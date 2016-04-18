@@ -34,6 +34,9 @@ public class GUI extends JFrame {
 		JButton zurueck = new JButton("Zurück");
 		JButton AIDatei = new JButton("Aus/In Datei");
 		JButton datei = new JButton("Datei");
+		JLabel label = new JLabel();
+		JFileChooser fc = new JFileChooser();
+		int a = 0;
 
 		dateiverwaltung.addActionListener(new ActionListener() {
 			@Override
@@ -43,13 +46,31 @@ public class GUI extends JFrame {
 			}
 		});
 
-		spiel.addActionListener(new ActionListener() {
+		zurueck.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
+				switch (depth) {
+				case 2:
+					depth = 1;
+					createLayout(depth, dateiverwaltung, spiel);
+					break;
+				case 3:
+					depth = 2;
+					createLayout(depth, speichern, loeschen, AIDatei, zurueck);
+					break;
+				case 4:
+					depth = 2;
+					createLayout(depth, speichern, loeschen, AIDatei, zurueck);
+					break;
+				case 5:
+					depth = 2;
+					createLayout(depth, speichern, loeschen, AIDatei, zurueck);
+					break;
+				}
 			}
 		});
 
-		zurueck.addActionListener(new ActionListener() {
+		spiel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
 			}
@@ -92,39 +113,48 @@ public class GUI extends JFrame {
 		AIDatei.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				System.out.println(Dateiverwaltung.speichern(deutsch, englisch, kategorie));
+				depth = 5;
+				label.setText("Keine Datei ausgewählt");
+				createLayout(depth, datei, fileLaden, fileSpeichern, label, zurueck);
 			}
 		});
 
-		speichernButton.addActionListener(new ActionListener() {
+		datei.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				System.out.println(Dateiverwaltung.speichern(deutsch, englisch, kategorie));
+				int a = fc.showOpenDialog(null);
+				try{
+				label.setText(fc.getSelectedFile().getName());
+				createLayout(depth, datei, fileLaden, fileSpeichern, label, zurueck);
+				System.out.println(fc.getSelectedFile().getName());
+				}catch (NullPointerException e){
+					
+				}
 			}
 		});
 
 		fileLaden.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				JFileChooser fc = new JFileChooser();
-				int a = fc.showOpenDialog(null);
-				System.out.println(Dateiverwaltung.fileLaden(a, fc));
+				label.setText(fc.getSelectedFile().getName());
+				createLayout(depth, datei, fileLaden, fileSpeichern, label, zurueck);
+				System.out.println(Dateiverwaltung.fileLaden(a, fc.getSelectedFile()));
 			}
 		});
 
 		fileSpeichern.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				JFileChooser fc = new JFileChooser();
-				int a = fc.showOpenDialog(null);
-				System.out.println(Dateiverwaltung.fileSpeichern(a, fc));
+				label.setText(fc.getSelectedFile().getName());
+				createLayout(depth, datei, fileLaden, fileSpeichern, label, zurueck);
+				System.out.println(Dateiverwaltung.fileSpeichern(a, fc.getSelectedFile()));
 			}
 		});
 
 		createLayout(depth, dateiverwaltung, spiel);
 
-		setTitle("Wort Löschen");
-		setSize(350, 200);
+		setTitle("Start");
+		setSize(300, 100);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
@@ -132,9 +162,11 @@ public class GUI extends JFrame {
 	private void createLayout(Integer a, JComponent... arg) {
 
 		switch (a) {
-		case 1:
+		case 1: // start
 			Container pane = getContentPane();
 			GroupLayout gl = new GroupLayout(pane);
+			setSize(300, 100);
+			setTitle("Start");
 			pane.removeAll();
 			pane.setLayout(gl);
 			gl.setAutoCreateGaps(true);
@@ -145,11 +177,12 @@ public class GUI extends JFrame {
 					.addGroup(gl.createParallelGroup().addComponent(arg[0]).addComponent(arg[1])));
 			break;
 
-		case 2:
+		case 2: // dateiverwaltung
 			pane = getContentPane();
 			gl = new GroupLayout(pane);
 			pane.removeAll();
-			setSize(150, 100);
+			setSize(300, 150);
+			setTitle("Dateiverwaltung");
 			pane.setLayout(gl);
 			gl.setAutoCreateGaps(true);
 			gl.setAutoCreateContainerGaps(true);
@@ -161,11 +194,12 @@ public class GUI extends JFrame {
 					.addGroup(gl.createParallelGroup().addComponent(arg[2]).addComponent(arg[3])));
 			break;
 
-		case 3:
+		case 3: // loeschen
 			pane = getContentPane();
 			gl = new GroupLayout(pane);
 			pane.removeAll();
 			setSize(350, 120);
+			setTitle("Löschen");
 			pane.setLayout(gl);
 			gl.setAutoCreateGaps(true);
 			gl.setAutoCreateContainerGaps(true);
@@ -177,11 +211,12 @@ public class GUI extends JFrame {
 					.addGroup(gl.createParallelGroup().addComponent(arg[2])));
 			break;
 
-		case 4:
+		case 4: // speichern
 			pane = getContentPane();
 			gl = new GroupLayout(pane);
 			pane.removeAll();
 			setSize(350, 160);
+			setTitle("Speichern");
 			pane.setLayout(gl);
 			gl.setAutoCreateGaps(true);
 			gl.setAutoCreateContainerGaps(true);
@@ -193,6 +228,25 @@ public class GUI extends JFrame {
 					.addGroup(gl.createParallelGroup().addComponent(arg[0]).addComponent(arg[3]))
 					.addGroup(gl.createParallelGroup().addComponent(arg[1]).addComponent(arg[4]))
 					.addGroup(gl.createParallelGroup().addComponent(arg[2])));
+			break;
+
+		case 5: // AIDatei
+			pane = getContentPane();
+			gl = new GroupLayout(pane);
+			pane.removeAll();
+			setSize(350, 200);
+			setTitle("Datei");
+			pane.setLayout(gl);
+			gl.setAutoCreateGaps(true);
+			gl.setAutoCreateContainerGaps(true);
+			gl.setHorizontalGroup(gl.createParallelGroup()
+					.addGroup(gl.createSequentialGroup().addComponent(arg[0]).addComponent(arg[3]))
+					.addGroup(gl.createSequentialGroup().addComponent(arg[1]).addComponent(arg[2]))
+					.addGroup(gl.createSequentialGroup().addComponent(arg[4])));
+			gl.setVerticalGroup(gl.createSequentialGroup()
+					.addGroup(gl.createParallelGroup().addComponent(arg[0]).addComponent(arg[3]))
+					.addGroup(gl.createParallelGroup().addComponent(arg[1]).addComponent(arg[2]))
+					.addGroup(gl.createParallelGroup().addComponent(arg[4])));
 			break;
 		}
 	}
