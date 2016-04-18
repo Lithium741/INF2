@@ -29,7 +29,7 @@ public class Dateiverwaltung extends JFrame {
 				return "Wort nicht gefunden!";
 			}
 		}
-		return "test";
+		return "";
 	}
 
 	public static String speichern(JTextField wortA, JTextField wortB, JTextField wortC) {

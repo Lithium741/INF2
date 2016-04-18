@@ -73,6 +73,7 @@ public class GUI extends JFrame {
 		spiel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
+				JOptionPane.showMessageDialog(null, "Coming soon...");
 			}
 		});
 
@@ -106,7 +107,7 @@ public class GUI extends JFrame {
 		speichernButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				System.out.println(Dateiverwaltung.speichern(deutsch, englisch, kategorie));
+				JOptionPane.showMessageDialog(null, Dateiverwaltung.speichern(deutsch, englisch, kategorie));
 			}
 		});
 
@@ -123,12 +124,12 @@ public class GUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				int a = fc.showOpenDialog(null);
-				try{
-				label.setText(fc.getSelectedFile().getName());
-				createLayout(depth, datei, fileLaden, fileSpeichern, label, zurueck);
-				System.out.println(fc.getSelectedFile().getName());
-				}catch (NullPointerException e){
-					
+				try {
+					label.setText(fc.getSelectedFile().getName());
+					createLayout(depth, datei, fileLaden, fileSpeichern, label, zurueck);
+					JOptionPane.showMessageDialog(null, fc.getSelectedFile().getName());
+				} catch (NullPointerException e) {
+
 				}
 			}
 		});
@@ -136,18 +137,26 @@ public class GUI extends JFrame {
 		fileLaden.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				label.setText(fc.getSelectedFile().getName());
-				createLayout(depth, datei, fileLaden, fileSpeichern, label, zurueck);
-				System.out.println(Dateiverwaltung.fileLaden(a, fc.getSelectedFile()));
+				try {
+					label.setText(fc.getSelectedFile().getName());
+					createLayout(depth, datei, fileLaden, fileSpeichern, label, zurueck);
+					JOptionPane.showMessageDialog(null, Dateiverwaltung.fileLaden(a, fc.getSelectedFile()));
+				} catch (NullPointerException e) {
+
+				}
 			}
 		});
 
 		fileSpeichern.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				label.setText(fc.getSelectedFile().getName());
-				createLayout(depth, datei, fileLaden, fileSpeichern, label, zurueck);
-				System.out.println(Dateiverwaltung.fileSpeichern(a, fc.getSelectedFile()));
+				try {
+					label.setText(fc.getSelectedFile().getName());
+					createLayout(depth, datei, fileLaden, fileSpeichern, label, zurueck);
+					JOptionPane.showMessageDialog(null, Dateiverwaltung.fileSpeichern(a, fc.getSelectedFile()));
+				} catch (NullPointerException e) {
+
+				}
 			}
 		});
 
