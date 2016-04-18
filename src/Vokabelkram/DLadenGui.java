@@ -54,7 +54,7 @@ public class DLadenGui extends JFrame {
 						File file = fc.getSelectedFile();
 						FileWriter writer = new FileWriter(file);
 						for (Speicher temp : StartGui.speicher) {
-							writer.write(temp.deutsch + "," + temp.english + "," + temp.kategorie);
+							writer.write(temp.getDeutsch() + "," + temp.getEnglish() + "," + temp.getKategorie());
 							writer.write("\r\n");
 						}
 						writer.close();

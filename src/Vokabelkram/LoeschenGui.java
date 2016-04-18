@@ -25,18 +25,18 @@ public class LoeschenGui extends JFrame {
 			public void actionPerformed(ActionEvent event) {
 				try {
 					for (Speicher temp : StartGui.speicher) {
-						if (temp.deutsch.equals(wort.getText())) {
+						if (temp.getDeutsch().equals(wort.getText())) {
 							int a = JOptionPane.showOptionDialog(null,
-									temp.deutsch + temp.english + " wirklich löschen?", "Löschen bestätigen",
+									temp.getDeutsch() + temp.getEnglish() + " wirklich löschen?", "Löschen bestätigen",
 									JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null,
 									new String[] { "Ja", "Nein" }, "Nein");
 							if (a == 0) {
 								StartGui.speicher.remove(temp);
 							} else {
 							}
-						} else if (temp.english.equals(wort.getText())) {
+						} else if (temp.getEnglish().equals(wort.getText())) {
 							int a = JOptionPane.showOptionDialog(null,
-									temp.deutsch + temp.english + " wirklich löschen?", "Löschen bestätigen",
+									temp.getDeutsch() + temp.getEnglish() + " wirklich löschen?", "Löschen bestätigen",
 									JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null,
 									new String[] { "Ja", "Nein" }, "Nein");
 							if (a == 0) {
