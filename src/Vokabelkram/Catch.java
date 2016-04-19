@@ -8,6 +8,7 @@ import java.awt.geom.Ellipse2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.xml.bind.Marshaller.Listener;
 
@@ -17,10 +18,10 @@ public class Catch extends JPanel {
 	int yIncrease = 1;
 	int y = 0;
 	int x = 5;
-	Wort wort1 = new Wort();
-	Wort wort2 = new Wort();
-	Wort wort3 = new Wort();
-	Wort wort4 = new Wort();
+	Wort wort1 = new Wort(this);
+	Wort wort2 = new Wort(this);
+	Wort wort3 = new Wort(this);
+	Wort wort4 = new Wort(this);
 	Bar bar = new Bar(this);
 
 	public Catch() {
@@ -65,6 +66,11 @@ public class Catch extends JPanel {
 		wort4.paint(g2d, "Wort4", 305);
 		bar.paint(g2d);
 
+	}
+
+	public void testPopup() {
+		JOptionPane.showMessageDialog(this, "test", "test", JOptionPane.YES_NO_CANCEL_OPTION);
+		System.exit(0);
 	}
 
 	public static void main(String[] args) throws InterruptedException {

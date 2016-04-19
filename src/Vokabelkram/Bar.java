@@ -1,24 +1,28 @@
 package Vokabelkram;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 
 public class Bar {
-	int x = 0;
-	int xa = 0;
+	private static final int Y = 430;
+	private static final int WIDTH = 45;
+	private static final int HIGHT = 10;
+	private int x = 0;
+	private int xa = 0;
 	private Catch game;
 
 	public Bar(Catch game) {
-		this.game= game;
+		this.game = game;
 	}
 
 	public void move() {
-		if (x + xa > 0 && x + xa < game.getWidth()-60)
+		if (x + xa > 0 && x + xa < game.getWidth() - 60)
 			x = x + xa;
 	}
 
 	public void paint(Graphics2D g) {
-		g.fillRect(x, 430, 45, 10);
+		g.fillRect(x, Y, WIDTH, HIGHT);
 	}
 
 	public void keyReleased(KeyEvent e) {
@@ -31,4 +35,12 @@ public class Bar {
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT)
 			xa = 3;
 	}
-}  
+
+	public Rectangle getBounds() {
+		return new Rectangle(x, Y, WIDTH, HIGHT);
+	}
+
+	public int getTopY() {
+		return Y;
+	}
+}
