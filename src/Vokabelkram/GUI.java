@@ -73,7 +73,8 @@ public class GUI extends JFrame {
 		spiel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				JOptionPane.showMessageDialog(null, "Coming soon...");
+				JOptionPane.showMessageDialog(null, "Coming soon...", "Spiel", JOptionPane.YES_NO_CANCEL_OPTION);
+				;
 			}
 		});
 

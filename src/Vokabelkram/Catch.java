@@ -47,7 +47,7 @@ public class Catch extends JPanel {
 		y = y + (1 * yIncrease);
 	}
 
-	private void move() {
+	public void move() {
 		wort1.move();
 		wort2.move();
 		wort3.move();
