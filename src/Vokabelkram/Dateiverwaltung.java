@@ -13,15 +13,21 @@ public class Dateiverwaltung extends JFrame {
 
 	public static String loeschen(JTextField wort, int b) {
 		for (Speicher temp : speicher) {
-			if (temp.getDeutsch().equals(wort.getText()) || temp.getEnglish().equals(wort.getText())) {
+			if (temp.getDeutsch().equals(wort.getText())) {
 				if (b == 0) {
 					speicher.remove(temp);
 					return temp.getDeutsch() + " = " + temp.getEnglish() + " gelöscht!";
 				} else {
 
 				}
-			} else {
-				return "Wort nicht gefunden!";
+			} else if (temp.getEnglish().equals(wort.getText())) {
+				if (b == 0) {
+					speicher.remove(temp);
+					return temp.getDeutsch() + " = " + temp.getEnglish() + " gelöscht!";
+				} else {
+
+				}
+			}else {
 			}
 		}
 		return "";

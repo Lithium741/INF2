@@ -26,6 +26,7 @@ public class GUI extends JFrame {
 		JTextField kategorie = new JTextField("Kategorie");
 		JButton speichern = new JButton("Speichern");
 		JButton speichernButton = new JButton("Speichern");
+		JButton ausgabe = new JButton("test");
 		JButton loeschen = new JButton("Löschen");
 		JButton loeschenButton = new JButton("Löschen");
 		JButton fileLaden = new JButton("Aus Datei laden");
@@ -46,6 +47,14 @@ public class GUI extends JFrame {
 				createLayout(depth, speichern, loeschen, AIDatei, zurueck);
 			}
 		});
+		
+		ausgabe.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent event) {
+				for (Speicher temp : Dateiverwaltung.speicher)
+				System.out.println(temp.toString());
+			}
+		});
 
 		zurueck.addActionListener(new ActionListener() {
 			@Override
@@ -53,7 +62,7 @@ public class GUI extends JFrame {
 				switch (depth) {
 				case 2:
 					depth = 1;
-					createLayout(depth, dateiverwaltung, spiel);
+					createLayout(depth, dateiverwaltung, spiel, ausgabe);
 					break;
 				case 3:
 					depth = 2;
@@ -173,7 +182,7 @@ public class GUI extends JFrame {
 			}
 		});
 
-		createLayout(depth, dateiverwaltung, spiel);
+		createLayout(depth, dateiverwaltung, spiel, ausgabe);
 
 		setTitle("Start");
 		setSize(300, 100);
@@ -194,9 +203,11 @@ public class GUI extends JFrame {
 			gl.setAutoCreateGaps(true);
 			gl.setAutoCreateContainerGaps(true);
 			gl.setHorizontalGroup(gl.createParallelGroup()
-					.addGroup(gl.createSequentialGroup().addComponent(arg[0]).addComponent(arg[1])));
+					.addGroup(gl.createSequentialGroup().addComponent(arg[0]).addComponent(arg[1]))
+					.addGroup(gl.createSequentialGroup().addComponent(arg[2])));
 			gl.setVerticalGroup(gl.createSequentialGroup()
-					.addGroup(gl.createParallelGroup().addComponent(arg[0]).addComponent(arg[1])));
+					.addGroup(gl.createParallelGroup().addComponent(arg[0]).addComponent(arg[1]))
+					.addGroup(gl.createParallelGroup().addComponent(arg[2])));
 			break;
 
 		case 2: // dateiverwaltung
