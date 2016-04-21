@@ -1,16 +1,13 @@
 package Vokabelkram;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.awt.geom.Ellipse2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.xml.bind.Marshaller.Listener;
 
 @SuppressWarnings("serial")
 public class Catch extends JPanel {
@@ -56,7 +53,8 @@ public class Catch extends JPanel {
 	}
 
 	@Override
-	public void paint(Graphics g) {
+	public void paintComponents(Graphics g) {
+		super.paintComponents(g);
 		super.paint(g);
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
