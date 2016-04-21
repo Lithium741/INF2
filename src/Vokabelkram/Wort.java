@@ -10,12 +10,17 @@ public class Wort {
 	int x;
 	private Catch game;
 
+	public Wort(){
+		
+	}
+	
 	public Wort(Catch game) {
 		this.game = game;
 	}
 
 	void move() {
 		y++;
+		//System.out.println(y);
 		if (collision()) {
 			game.testPopup();
 		}

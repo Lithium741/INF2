@@ -42,6 +42,7 @@ public class Catch extends JPanel {
 
 	public void moveWord() {
 		y = y + (1 * yIncrease);
+		
 	}
 
 	public void move() {
@@ -53,8 +54,7 @@ public class Catch extends JPanel {
 	}
 
 	@Override
-	public void paintComponents(Graphics g) {
-		super.paintComponents(g);
+	public void paint(Graphics g) {
 		super.paint(g);
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -63,7 +63,6 @@ public class Catch extends JPanel {
 		wort3.paint(g2d, "Wort3", 205);
 		wort4.paint(g2d, "Wort4", 305);
 		bar.paint(g2d);
-
 	}
 
 	public void testPopup() {

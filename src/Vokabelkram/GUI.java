@@ -15,6 +15,8 @@ public class GUI extends JFrame {
 
 		initUI();
 	}
+	
+	
 
 	public void initUI() throws IOException {
 
@@ -68,11 +70,22 @@ public class GUI extends JFrame {
 				}
 			}
 		});
+		
+		
+		
 
 		spiel.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent event) {
-				JOptionPane.showMessageDialog(null, "Coming soon...", "Spiel", JOptionPane.YES_NO_CANCEL_OPTION);
+			public void actionPerformed(ActionEvent event)  {
+				//JOptionPane.showMessageDialog(null, "Coming soon...", "Spiel", JOptionPane.YES_NO_CANCEL_OPTION);
+				GameFrame frame = new GameFrame();
+				
+				frame.setSize(360, 500);
+				frame.setLocationRelativeTo(null);
+				frame.setVisible(true);
+				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+				
 				;
 			}
 		});

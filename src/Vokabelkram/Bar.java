@@ -12,6 +12,10 @@ public class Bar {
 	private int xa = 0;
 	private Catch game;
 
+	public Bar() {
+		
+	}
+	
 	public Bar(Catch game) {
 		this.game = game;
 	}
@@ -19,6 +23,7 @@ public class Bar {
 	public void move() {
 		if (x + xa > 0 && x + xa < game.getWidth() - 60)
 			x = x + xa;
+		
 	}
 
 	public void paint(Graphics2D g) {
